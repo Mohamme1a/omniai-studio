@@ -1,0 +1,11 @@
+{
+  "name": "OmniAI Studio",
+  "description": "Comprehensive multi-modal AI studio featuring conversational AI Chat Assistant with speech-to-text, Text-to-Image Generator with diffusion styles, Text-to-Video Creator, and Image-to-Video Converter.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
