@@ -22,7 +22,7 @@ export default function App() {
 
     try {
       // ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
-      const apiKey = 'AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw';
+      const apiKey = 'AQ.Ab8RN6L0F-GUaXANNHIryhaX4QYeoqE_ZyQL8taxYa6YvrJ9xA';
       
             const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AQ.Ab8RN6L0F-GUaXANNHIryhaX4QYeoqE_ZyQL8taxYa6YvrJ9xA`, {
               
