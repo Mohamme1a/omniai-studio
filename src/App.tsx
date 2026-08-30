@@ -22,8 +22,8 @@ export default function App() {
     setLoading(true);
 
     try {
-      // تهيئة العميل باستخدام مفتاح الـ API من متغيرات البيئة
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+      // ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
+      const ai = new GoogleGenAI({ apiKey: 'AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw' });
       
       const response = await ai.models.generateContent({
         model: 'gemini-2.5-flash',
