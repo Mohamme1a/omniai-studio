@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { GoogleGenAI } from '@google/genai';
 
 interface Message {
   sender: 'user' | 'ai';
@@ -8,7 +7,7 @@ interface Message {
 
 export default function App() {
   const [messages, setMessages] = useState<Message[]>([
-    { sender: 'ai', text: 'أهلاً بك! أنا مساعدك الذكي OmniAI، مدعوم بنماذج Gemini. كيف يمكنني مساعدتك اليوم؟' }
+    { sender: 'ai', text: 'أهلاً بك! أنا مساعدك الذكي OmniAI، كيف يمكنني مساعدتك اليوم؟' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -22,18 +21,25 @@ export default function App() {
     setLoading(true);
 
     try {
-      // ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
-      const ai = new GoogleGenAI({ apiKey: 'AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw' });
+      // استبدل النص التالي بمفتاح الـ API الخاص بك مباشرة
+      const apiKey = 'AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw';
       
-      const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
-        contents: userMessage,
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: userMessage }] }]
+        })
       });
 
-      const aiReply = response.text || 'عذراً، لم أتمكن من الحصول على رد.';
+      const data = await response.json();
+      const aiReply = data.candidates?.[0]?.content?.parts?.[0]?.text || 'عذراً، لم أستطع توليد رد.';
+      
       setMessages(prev => [...prev, { sender: 'ai', text: aiReply }]);
     } catch (error) {
-      setMessages(prev => [...prev, { sender: 'ai', text: 'حدث خطأ أثناء الاتصال بالخادم. تأكد من صحة مفتاح الـ API.' }]);
+      setMessages(prev => [...prev, { sender: 'ai', text: 'حدث خطأ في الشبكة، تحقق من الاتصال ومفتاح الـ API.' }]);
     } finally {
       setLoading(false);
     }
