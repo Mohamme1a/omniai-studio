@@ -21,10 +21,11 @@ export default function App() {
     setLoading(true);
 
     try {
-      // استبدل النص التالي بمفتاح الـ API الخاص بك مباشرة
+      // ضع مفتاح الـ API الخاص بك هنا بين علامتي التنصيص
       const apiKey = 'AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw';
       
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSy...AQ.Ab8RN6KWvCIf7DWFXB1sJZYAluWdTbrXlXAUcdRhRRpoc_XnYw`, {
+
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
